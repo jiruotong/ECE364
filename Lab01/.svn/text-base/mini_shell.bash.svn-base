@@ -1,0 +1,43 @@
+#! /bin/bash
+#
+#$Author$
+#$Date$
+#$Revision$
+#$HeadURL$
+#$Id$
+count=1
+while [[ $count == 1 ]]
+do
+echo -n "Enter a commond:"
+read input
+echo "$input"
+if [[ $input == 'hello' ]]
+	then
+	echo "Hello $USER"
+elif [[ $input == 'quit' ]]
+	then
+	echo "Exiting..."
+	exit 0
+elif [[ $input == 'compile' ]]
+	then
+	echo -n "Enter filename: "
+	read file
+	echo "$file"
+	if [[ -r $file ]]
+		then
+		gcc -Wall -Werror $file
+		if [[ $? == 0 ]]
+			then
+			echo "Complation succeeded"
+		else
+			echo "Complation failed"
+		fi
+	else
+		echo "That file does not exist"
+	fi
+else
+	echo "Error: Unrecognized input"
+fi
+done
+
+
